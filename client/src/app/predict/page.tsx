@@ -5,6 +5,8 @@ import axios from "axios";
 import { Header } from "../../components/ui/Header";
 import Footer from "@/components/ui/Footer";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 interface FormData {
   Year: number;
   Present_Price: number;
@@ -41,7 +43,7 @@ export default function Predict() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://127.0.0.1:5000", formData);
+      const response = await axios.post(`${API_URL}`, formData);
       setPrediction(response.data);
     } catch (error) {
       console.error("Error:", error);
